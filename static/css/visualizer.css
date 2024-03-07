@@ -1,0 +1,56 @@
+/* transcription_app/static/transcription_app/css/visualizer.css */
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#audioVisualizer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: #004db1; Black background */
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Water wave-like animation effect */
+@keyframes waveAnimation {
+    0% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(0.5);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+/* Visualizer bars */
+.bar {
+    width: 2px;
+    height: 100%;
+    background-color: #2196F3; /* Blue color */
+    display: inline-block;
+    margin-right: 1px;
+    animation: waveAnimation 0.5s infinite ease-in-out;
+}
+
+/* Adjust the number of bars based on your preference */
+.bar:nth-child(2n) {
+    height: 80%;
+}
+
+.bar:nth-child(3n) {
+    height: 60%;
+}
+
+.bar:nth-child(4n) {
+    height: 40%;
+}
+
+.bar:nth-child(5n) {
+    height: 20%;
+}

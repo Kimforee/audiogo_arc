@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whisper Transcriber</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" text="text/css" media="screen" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" text="text/css" media="screen" href="{% static 'css/visualizer.css' %}">  <!-- Add this line -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    {% csrf_token %}
+</head>
+<body>
+    <div class="container">
+        <h1 class="f2 mb4">Whisper Transcriber</h1>
+        <button id="recordBtn" class="b pa3 br3 bg-dark-gray near-white hover-bg-mid-gray">
+            <i class="fas fa-microphone"></i> Record
+        </button>
+        <button id="clearBtn" class="b pa3 br3 bg-dark-gray near-white hover-bg-mid-gray">
+            <i class="fas fa-trash-alt"></i> Clear
+        </button>
+        <div id="transcriptionBox" class="transcription-box mt4 pa3 br3 bg-light-gray near-black"></div>
+    </div>
+
+    <div class="audio-visualizer-container">
+        <canvas id="audioVisualizer"></canvas>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
+    
+            var recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+    
+            // Full-screen audio visualizer setup
+            var audioVisualizer = new FullScreenAudioVisualizer();
+            audioVisualizer.init();
+    
+            $("#recordBtn").click(function() {
+                recognition.start();
+            });
+    
+            $("#clearBtn").click(function() {
+                $("#transcriptionBox").text("");
+            });
+    
+            recognition.onaudiostart = function(event) {
+                // Trigger full-screen audio visualizer when audio recording starts
+                audioVisualizer.start();
+            };
+    
+            recognition.onaudioend = function(event) {
+                // Stop full-screen audio visualizer when audio recording ends
+                audioVisualizer.stop();
+            };
+    
+            recognition.onresult = function(event) {
+                var transcription = event.results[event.results.length - 1][0].transcript;
+                $("#transcriptionBox").text(transcription);
+    
+                // Send transcription to the server for real-time processing with CSRF token
+                $.ajax({
+                    type: "POST",
+                    url: "/start_transcription/",
+                    data: JSON.stringify({ audio_data: transcription, csrfmiddlewaretoken: csrf_token }),
+                    success: function(response) {
+                        console.log(response);
+                        // Handle the server response if needed
+                    },
+                    error: function(error) {
+                        console.error(error);
+                        // Handle errors if needed
+                    }
+                });
+            };
+        });
+    </script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/visualizer.js' %}"></script>
+</body>
+</html>

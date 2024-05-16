@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('start_transcription/', views.start_transcription, name='start_transcription'),
-    path('clear_transcription/', views.clear_transcription, name='clear_transcription'),
+    path('process_transcription/', views.process_transcription, name='process_transcription'),
 ]
+

@@ -1,0 +1,244 @@
+{
+    "intents":[
+    {
+        "tag":"greeting",
+        "patterns":["hello","hii","hey !","wake up","Friday","good morning", "good afternoon"
+        ],
+        "responses":["Hello Sir","How are you Sir","Whats up Sir",
+                     "I'm Ready to work Sir","Yes Sir","Hello!", "Hi there!", "Hey!", "Good to see you! How can I assist you today?"
+        ]
+    },
+    {
+        "tag":"farewell",
+        "patterns":["bye","goodbye","sleep","exit","bye Friday","Exit","initiate sleep"
+        ],
+        "responses":["Bye","Good bye Sir","Initiating sleep","Take care and have a great day!"
+        ]
+    },
+    {
+        "tag": "thanks",
+    "patterns":["Thanks","Thank you", "that's helpful","appreciate it"],
+    "responses": ["Happy to help", "Anytime!", "My pleasure","You're welcome!", "Glad I could help!"]
+    },
+    {
+        "tag": "",
+    "patterns": [""," "],
+    "responses": ["Sorry, can't understand you","please give me more information",
+     "i couldn't understand it properly"]
+    },
+    {
+        "tag": "time",
+    "patterns": ["what is the time","What's the time", "current time"],
+    "responses": ["time",
+     ""]
+    },
+    {
+        "tag": "wikipedia",
+    "patterns": ["what is","what's the","wikipedia","who is","who was","what was"],
+    "responses": ["wikipedia",
+     ""]
+    },
+    {
+        "tag": "health",
+    "patterns": ["how are you friday !","are you fine !","what's up !","how are you feeling"],
+    "responses": ["pretty fine sir","i am fine sir","I'm doing well, thank you!", "Feeling great today!", "All good on my end!",
+     "all good sir !"]
+    },
+    {
+        "tag": "excitement",
+        "patterns": ["wow!", "amazing!", "incredible!", "unbelievable!"],
+        "responses": ["That's fantastic!", "I'm thrilled!", "Isn't it exciting?"]
+    },
+    {
+        "tag": "curiosity",
+        "patterns": ["how does it work?", "tell me more", "I'm curious", "what's the story?"],
+        "responses": ["Let me explain!", "Here's the information you need.", "Would you like to know more?"]
+    },
+    {
+        "tag": "frustration",
+        "patterns": ["this is frustrating", "I'm so annoyed", "why is this not working?", "I can't figure it out"],
+        "responses": ["I understand your frustration.", "Let's find a solution together.", "Take a deep breath, we'll sort it out."]
+    },
+    {
+        "tag": "music",
+        "patterns": ["play music", "recommend some songs", "what's your favorite song"],
+        "responses": ["I can't play music, but I can suggest some songs!", "I don't have ears, but I appreciate good music!"]
+    },
+    {
+        "tag": "weather",
+        "patterns": ["what's the weather like today", "is it going to rain", "weather forecast"],
+        "responses": ["The weather today is [weather_description].", "It looks like [weather_condition] today."]
+    },
+    {
+        "tag": "news",
+        "patterns": ["latest news", "what's happening in the world", "news update"],
+        "responses": ["Here are some headlines: [news_headlines]", "Let me fetch the latest news for you."]
+    },
+    {
+        "tag": "joke",
+        "patterns": ["tell me a joke", "say something funny", "make me laugh"],
+        "responses": ["Sure, here's a joke: [random_joke]", "Why did the chicken cross the road? To get to the other side!"]
+    },
+    {
+        "tag": "food",
+        "patterns": ["recommend a restaurant", "what's your favorite food", "recipe for [dish_name]"],
+        "responses": ["I don't eat, but I can suggest some great restaurants!", "I'm an AI, so I don't have taste buds, but I hear [restaurant_name] is good!"]
+    },
+    {
+        "tag": "movies",
+        "patterns": ["recommend a movie", "what's your favorite movie", "movie reviews"],
+        "responses": ["I can suggest some great movies! What genre are you interested in?", "I don't watch movies, but I can provide recommendations based on your preferences!"]
+    },
+    {
+        "tag": "technology",
+        "patterns": ["latest tech news", "tell me about [technology_topic]", "best gadgets"],
+        "responses": ["Here are some tech news: [tech_news]", "Let me find information about [technology_topic] for you."]
+    },
+    {
+        "tag": "sports",
+        "patterns": ["sports updates", "who won the latest game", "favorite sports team"],
+        "responses": ["Here are some sports updates: [sports_updates]", "I'm not really into sports, but I can provide you with the latest scores."]
+    },
+    {
+        "tag": "travel",
+        "patterns": ["best travel destinations", "recommend a vacation spot", "travel tips"],
+        "responses": ["Some popular travel destinations are [travel_destinations].", "I can provide you with travel recommendations based on your preferences!"]
+    },
+    {
+        "tag": "education",
+        "patterns": ["study tips", "how to learn [subject]", "best educational resources"],
+        "responses": ["Here are some study tips: [study_tips]", "I can help you find educational resources for [subject]."]
+    },
+    {
+        "tag": "pets",
+        "patterns": ["tell me about [pet_species]", "best pet breeds", "caring for [pet_species]"],
+        "responses": ["Here's some information about [pet_species]: [pet_info]", "I can provide you with recommendations for pet breeds based on your preferences."]
+    },
+    {
+        "tag": "motivation",
+        "patterns": ["I need motivation", "inspire me", "positive quotes"],
+        "responses": ["You're capable of amazing things!", "Believe in yourself, and you'll achieve great things!"]
+    },
+    {
+        "tag": "books",
+        "patterns": ["recommend a book", "favorite book genre", "book reviews"],
+        "responses": ["I can suggest some great books! What genre are you interested in?", "I don't read books, but I can provide recommendations based on your preferences!"]
+    },
+    {
+        "tag": "fitness",
+        "patterns": ["workout tips", "best exercises for [body_part]", "fitness goals"],
+        "responses": ["Here are some workout tips: [workout_tips]", "I can help you with your fitness goals and suggest exercises for [body_part]."]
+    },
+    {
+        "tag": "technology",
+        "patterns": ["latest tech news", "tell me about [technology_topic]", "best gadgets"],
+        "responses": ["Here are some tech news: [tech_news]", "Let me find information about [technology_topic] for you."]
+    },
+    {
+        "tag": "bhuvan_deep_dive",
+        "patterns": [
+          "bhuvan website in detail",
+          "tell me more about bhuvan functionalities",
+          "advanced features of bhuvan"
+        ],
+        "responses": [
+          "Bhuvan offers a wide range of features beyond this basic explanation. To explore its full potential, I recommend visiting the Bhuvan website: [https://www.nrsc.gov.in/EO_Rural_Portals?language_content_entity=en]"
+        ]
+      },
+      {
+        "tag": "bhuvan_map_creation",
+        "patterns": [
+          "create a map on bhuvan",
+          "how to use bhuvan for mapping",
+          "bhuvan custom map creation"
+        ],
+        "responses": [
+          "Bhuvan allows you to create custom maps with your preferred data layers.  For a guide on map creation, visit the Bhuvan website: [https://www.nrsc.gov.in/EO_Bhuvan_Satellite]"  
+        ]
+      },
+      {
+        "tag": "bhuvan_overview",
+        "patterns": [
+          "what is bhuvan website",
+          "tell me about bhuvan",
+          "bhuvan website overview"
+        ],
+        "responses": [
+          "Bhuvan is a geospatial platform developed by ISRO. It allows you to view and download satellite imagery, maps, and other geospatial data. You can also create custom maps and applications.",
+          "For a more detailed overview, you can visit the Bhuvan website: [https://www.nrsc.gov.in/EO_Water_Objective]"
+        ]
+      },
+      {
+        "tag": "bhuvan_data_access",
+        "patterns": [
+          "how to access data on bhuvan",
+          "download satellite imagery from bhuvan",
+          "what kind of data is available on bhuvan"
+        ],
+        "responses": [
+          "Bhuvan provides access to a variety of geospatial data, including satellite imagery, maps, and elevation data. You can find information on accessing and downloading data on the Bhuvan website: [https://www.nrsc.gov.in/RD_Activities]"
+        ]
+      },
+          {
+        "tag": "agriculture",
+        "patterns": [
+            "development of transformative index-based crop insurance solutions",
+            "bio-energy potential from crop residues",
+            "digital agriculture",
+            "village level groundwater resources assessment & management"
+        ],
+        "responses": [
+            "Learn about transformative index-based crop insurance solutions and how they're developed using geospatial technologies.",
+            "Discover the bio-energy potential from crop residues and how it's being explored.",
+            "Explore the concept of digital agriculture and its applications.",
+            "Understand the importance of village-level groundwater resources assessment and management."
+        ]
+    },
+    {
+        "tag": "disaster_management",
+        "patterns": [
+            "satellite integrated landslide assessment and alert system",
+            "early warning of flash drought",
+            "real-time operational spatial flood early warning for the Godavari and the Tapi Rivers",
+            "national database for emergency management"
+        ],
+        "responses": [
+            "Get insights into the Satellite Integrated Landslide Assessment and Alert System.",
+            "Learn about the early warning systems for flash droughts.",
+            "Understand the real-time operational spatial flood early warning systems for the Godavari and Tapi Rivers.",
+            "Explore the National Database for Emergency Management and its role in disaster management."
+        ]
+    },
+    {
+        "tag": "geosciences",
+        "patterns": [
+            "primary level of land use land cover classification using AI/ML",
+            "building detection and building footprint extraction using deep learning",
+            "ai & ml for urban water body monitoring",
+            "capacity estimation of minor irrigation tanks using drone survey"
+        ],
+        "responses": [
+            "Learn about the primary level of land use land cover classification using AI/ML.",
+            "Discover how building detection and building footprint extraction are done using deep learning.",
+            "Explore AI & ML applications for urban water body monitoring.",
+            "Understand how capacity estimation of minor irrigation tanks is done using drone surveys."
+        ]
+    },
+    {
+        "tag": "rural_development",
+        "patterns": [
+            "biodiversity characterization at community level in india using earth observation data",
+            "development of integrated geospatial techniques for surveillance of pest and diseases in citrus",
+            "identification of the best suited spectral indices for burn scar discrimination",
+            "development of model for yield estimation of orange using geospatial techniques"
+        ],
+        "responses": [
+            "Learn about biodiversity characterization at the community level in India using Earth Observation data.",
+            "Discover the development of integrated geospatial techniques for surveillance of pest and diseases in citrus.",
+            "Explore the identification of the best-suited spectral indices for burn scar discrimination.",
+            "Understand the development of a model for yield estimation of orange using geospatial techniques."
+        ]
+    }
+      
+    ]
+}

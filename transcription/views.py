@@ -1,33 +1,22 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-import openai
 from django.views.decorators.csrf import csrf_exempt
-import json
-
-# transcription_app/views.py
-from django.shortcuts import render
-from django.http import JsonResponse
-from .logic import initialize_recorder, start_real_time_transcription
+from .logic import initialize_recorder
 from threading import Thread
 
-@csrf_exempt
+recorder, source = initialize_recorder()
+transcription_thread = None  # Track the transcription thread
+
 def index(request):
     return render(request, 'html/index.html')
 
-@csrf_exempt
-def start_transcription(request):
-    if request.method == 'POST':
-        recorder, source = initialize_recorder()
-        # Start real-time transcription in a separate thread
-        transcription_thread = Thread(target=start_real_time_transcription, args=(recorder, source))
-        transcription_thread.daemon = True
-        transcription_thread.start()
-
+def process_transcription(request):
+    if request.method == 'POST' and 'transcription' in request.POST:
+        transcription = request.POST['transcription']
+        # Process the transcription here, e.g., pass it to the model for further processing
+        print("Transcription received:", transcription)
         return JsonResponse({'status': 'success'})
-    
-    return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request'})
 
-def clear_transcription(request):
-    # Your logic for clearing the transcription goes here
-    return JsonResponse({'status': 'success'})
 

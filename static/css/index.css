@@ -6,71 +6,146 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-}
-
-.container {
-    background-color: #fff;
-    border-radius: 5px;
+    margin: 20px;
+  }
+  
+  .container {
+    background-color: #e0e0e0;
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
+    box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .header img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+  
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+    }
+  
+    .header img {
+      margin-bottom: 10px;
+    }
+  
+    .header h1 {
+      position: static;
+      transform: none;
+    }
+  }
+  
+  h1 {
     text-align: center;
     color: black;
-    margin-bottom: 20px;
-}
-
-.audio-visualizer-container {
+    margin: 0 20px;
+  }
+  
+  .audio-visualizer-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-}
-
-#audioVisualizer {
+  }
+  
+  #audioVisualizer {
     width: 100%;
     height: 250px;
-}
-#whisperRecordBtn,
-#stopRecordBtn,
-#recordBtn,
-#clearBtn {
+  }
+  
+  #whisperRecordBtn,
+  #stopRecordBtn,
+  #recordBtn,
+  #clearBtn {
     margin: 10px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #2196F3; /* Blue color */
-    color: #fff; /* White text color */
+    background-color: #2196F3;
+    color: #fff;
     border: none;
     padding: 10px;
-    border-radius: 5px;
-    z-index: 1; /* Set a higher z-index than the visualizer */
-}
-#stopRecordBtn,
-#recordBtn:hover,
-#whisperRecordBtn:hover,
-#clearBtn:hover {
-    background-color: #1565C0; /* Darker shade of blue on hover */
-}
-
-#transcriptionBox {
-    margin-top: 20px;
-    padding: 10px;
-    width: 500px; /* Fixing the width */
-    height: 300px; /* Fixing the height */
-    overflow-y: auto; /* Enable vertical scrolling */
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+    z-index: 1;
+  }
+  
+  #stopRecordBtn,
+  #recordBtn:hover,
+  #whisperRecordBtn:hover,
+  #clearBtn:hover {
+    background-color: #1565C0;
+  }
+  
+  .transcription-box {
     border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-
-.transcription-box {
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
     min-height: 100px;
     max-height: 300px;
     overflow-y: auto;
-}
+    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+    background-color: #e0e0e0;
+  }
+  
+  .chat-box {
+    flex-grow: 1;
+    width: 100%;
+    max-height: 80%;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+  }
+  
+  .message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .user-message {
+    text-align: right;
+    background-color: #d1e7dd;
+  }
+  
+  .bot-message {
+    text-align: left;
+    background-color: #f8d7da;
+  }
+  
+  .message-label {
+    font-weight: bold;
+  }
+  
+  .message-text {
+    margin-top: 5px;
+  }
+  

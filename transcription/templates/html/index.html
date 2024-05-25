@@ -1,99 +1,107 @@
-  {% load static %}
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whisper Transcriber</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" text="text/css" media="screen" href="{% static 'css/index.css' %}">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js"></script>
-    {% csrf_token %}
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="f2 mb4">Whisper Transcriber</h1>
-      <button id="recordBtn" class="record-btn b pa3 br3 bg-dark-gray near-white hover-bg-mid-gray">
-        <i class="fas fa-microphone"></i> Record (Webkit)
-      </button>
-      <button id="stopRecordBtn" style="display: none;" class="stop-btn b pa3 br3 bg-dark-gray near-white hover-bg-mid-gray">
-        <i class="fas fa-stop-circle"></i> Stop Recording
-      </button>
-      <button id="clearBtn" class="clear-btn b pa3 br3 bg-dark-gray near-white hover-bg-mid-gray">
-        <i class="fas fa-trash-alt"></i> Clear
-      </button>
-      <div id="transcriptionBox" class="transcription-box mt4 pa3 br3 bg-light-gray near-black"></div>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhuvan Assistant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" text="text/css" media="screen" href="{% static 'css/index.css' %}">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js"></script>
+  {% csrf_token %}
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img style="width: 400px;" src="{% static 'assest/bhuvan-logo.png' %}" alt="Left Image">
+      <h1 class="f2 mb4">Bhuvan Assistant</h1>
+      <img style="width: 500px;" src="{% static 'assest/nrsc_logo.png' %}" alt="Right Image">
     </div>
-
-    <div class="audio-visualizer-container">
-      <canvas id="audioVisualizer"></canvas>
+    <button id="recordBtn" class="record-btn b pa3 br3 bg-dark-gray near-white hover-bg-mid-gray">
+      <i class="fas fa-microphone"></i> Record (Webkit)
+    </button>
+    <button id="stopRecordBtn" style="display: none;" class="stop-btn b pa3 br3 bg-dark-gray near-white hover-bg-mid-gray">
+      <i class="fas fa-stop-circle"></i> Stop Recording
+    </button>
+    <button id="clearBtn" class="clear-btn b pa3 br3 bg-dark-gray near-white hover-bg-mid-gray">
+      <i class="fas fa-trash-alt"></i> Clear
+    </button>
+    <div id="chatBox" class="chat-box mt4 pa3 br3 bg-light-gray near-black">
+      <!-- Chat messages will appear here -->
     </div>
+  </div>
 
-    <script>
-      $(document).ready(function () {
-        const csrf_token = $("input[name='csrfmiddlewaretoken']").val();
+  <div class="audio-visualizer-container">
+    <canvas id="audioVisualizer"></canvas>
+  </div>
 
-        const recognition = new webkitSpeechRecognition();
-        recognition.continuous = true;
+  <script>
+    $(document).ready(function () {
+      const csrf_token = $("input[name='csrfmiddlewaretoken']").val();
 
+      const recognition = new webkitSpeechRecognition();
+      recognition.continuous = true;
 
-        const wavesurfer = WaveSurfer.create({
-          container: document.getElementById("audioVisualizer"),
-        });
-
-        // webkit trancriber
-        $("#recordBtn").click(function () {
-          recognition.start();
-          wavesurfer.loadBlob(/* ... */);
-          wavesurfer.play();
-          $("#recordBtn").hide();
-          $("#stopRecordBtn").show();
-        });
-
-        // stop recording
-        $("#stopRecordBtn").click(function () {
-          recognition.stop();
-          $("#stopRecordBtn").hide();
-          $("#recordBtn").show();
-          $("#whisperRecordBtn").show();
-          wavesurfer.stop();
-        });
-
-        // clear all text
-        $("#clearBtn").click(function () {
-          $("#transcriptionBox").text("");
-          wavesurfer.empty();
-        });
-
-        recognition.onaudiostart = function (event) {
-          wavesurfer.play();
-        };
-
-        recognition.onaudioend = function (event) {
-          wavesurfer.stop();
-        };
-
-        // show the trancribed text to the screen from webkit
-        recognition.onresult = function (event) {
-          var transcription = event.results[event.results.length - 1][0].transcript;
-          $("#transcriptionBox").append(transcription + "\n");
-
-          $.ajax({
-            type: "POST",
-            url: "/process_transcription/",
-            data: { transcription: transcription, csrfmiddlewaretoken: csrf_token },
-            success: function (response) {
-              console.log(response);
-            },
-            error: function (error) {
-              console.error(error);
-            },
-          });
-        };
+      const wavesurfer = WaveSurfer.create({
+        container: document.getElementById("audioVisualizer"),
       });
-    </script>
-    <script src="{% static 'js/index.js' %}"></script>
-    <script src="{% static 'js/visualizer.js' %}"></script>
-  </body>
-  </html>
+
+      // webkit transcriber
+      $("#recordBtn").click(function () {
+        recognition.start();
+        wavesurfer.loadBlob(/* ... */);
+        wavesurfer.play();
+        $("#recordBtn").hide();
+        $("#stopRecordBtn").show();
+      });
+
+      // stop recording
+      $("#stopRecordBtn").click(function () {
+        recognition.stop();
+        $("#stopRecordBtn").hide();
+        $("#recordBtn").show();
+        wavesurfer.stop();
+      });
+
+      // clear all text
+      $("#clearBtn").click(function () {
+        $("#chatBox").html("");
+        wavesurfer.empty();
+      });
+
+      recognition.onaudiostart = function (event) {
+        wavesurfer.play();
+      };
+
+      recognition.onaudioend = function (event) {
+        wavesurfer.stop();
+      };
+
+      // show the transcribed text to the screen from webkit
+      recognition.onresult = function (event) {
+        var transcription = event.results[event.results.length - 1][0].transcript;
+        $("#chatBox").append('<div class="message user-message"><div class="message-label">User</div><div class="message-text">' + transcription + '</div></div>');
+
+        $.ajax({
+          type: "POST",
+          url: "/process_transcription/",
+          data: { transcription: transcription, csrfmiddlewaretoken: csrf_token },
+          success: function (response) {
+            if (response.status === 'success') {
+              $("#chatBox").append('<div class="message bot-message"><div class="message-label">Assistant</div><div class="message-text">' + response.response + '</div></div>');
+            } else {
+              console.error(response.message);
+            }
+          },
+          error: function (error) {
+            console.error(error);
+          },
+        });
+      };
+    });
+  </script>
+  <script src="{% static 'js/index.js' %}"></script>
+  <script src="{% static 'js/visualizer.js' %}"></script>
+</body>
+</html>
